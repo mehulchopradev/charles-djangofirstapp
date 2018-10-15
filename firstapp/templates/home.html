@@ -1,0 +1,14 @@
+{% extends 'master.html' %}
+
+{% block title %}
+  My Home page
+{% endblock %}
+
+{% block header %}
+  Welcome to my home page<br>
+  <i>{{ message }}</i>
+{% endblock %}
+
+{% block menu %}
+    <a href="{% url 'contactus' %}">Contact Us</a>
+{% endblock %}

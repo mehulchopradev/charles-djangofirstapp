@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>
+      {% block title %}
+      {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'styles/app.css' %}">
+  </head>
+  <body>
+    <h2 class="header">
+      {% block header %}
+      {% endblock %}
+    </h2>
+    <img class="banner" src="{% static 'images/steveandsteve.jpg' %}" alt="">
+    {% block menu %}
+    {% endblock %}
+    <footer>
+      Copyright 2018-19 All Rights Reserved
+    </footer>
+  </body>
+</html>
