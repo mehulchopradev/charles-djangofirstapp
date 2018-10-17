@@ -1,0 +1,23 @@
+{% extends 'library/master_public.html' %}
+
+{% block header %}
+  Register Here!
+{% endblock %}
+
+{% block content %}
+  <form method="post" action="{% url 'library:registeruser' %}">
+    {% csrf_token %}
+    <p><input name="username" placeholder="Enter Username"></p>
+    <p><input name="password" type="password" placeholder="Enter Password"></p>
+    <p>
+      Country:
+      <select name="country">
+        <option value="IN">India</option>
+        <option value="US">USA</option>
+      </select>
+    </p>
+    <p>
+      <input type="submit" value="Register">&nbsp;
+    </p>
+  </form>
+{% endblock %}

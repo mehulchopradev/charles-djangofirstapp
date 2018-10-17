@@ -1,0 +1,16 @@
+{% extends 'library/master_public.html' %}
+
+{% block header %}
+  Login Here!
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <p><input placeholder="Enter Username"></p>
+    <p><input type="password" placeholder="Enter Password"></p>
+    <p>
+      <input type="submit" value="Login">&nbsp;
+      <a href="{% url 'library:registerpage' %}">Register</a>
+    </p>
+  </form>
+{% endblock %}
