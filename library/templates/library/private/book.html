@@ -1,0 +1,35 @@
+{% extends 'library/master_public.html' %}
+
+{% block header %}
+  Book Details
+{% endblock %}
+
+{% block content %}
+  <p>
+    Title: {{ book.title }}
+  </p>
+  <p>
+    Pages: {{ book.pages }}
+  </p>
+  <p>
+    Price: {{ book.price }}
+  </p>
+  <h2>Publication house details</h2>
+  <p>
+    Name: {{ book.publication.name }}
+  </p>
+  <p>
+    Ratings: {{ book.publication.ratings }}
+  </p>
+  <h2>Reviews</h2>
+  {% if book.review_set.count == 0 %}
+    No Reviews Yet!
+  {% else %}
+    {% for review in book.review_set.all %}
+      <div>
+        <i>{{ review.name }}</i><br>
+        <p>{{ review.description }}</p>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'library/master_public.html' %}
+
+{% block header %}
+  Welcome
+{% endblock %}
+
+{% block content %}
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Pages</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in booklist %}
+        <tr>
+          <td>{{book.title}}</td>
+          <td>{{book.price}}</td>
+          <td>{{book.pages}}</td>
+          <td><a href="{% url 'library:bookdetails' book.id %}">Details</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

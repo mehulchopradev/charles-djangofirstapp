@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse
 from django.http import HttpResponseRedirect, HttpResponse
 
-from library.models import Student
+from library.models import Student, Book
 
 # Create your views here.
 
@@ -24,6 +24,31 @@ def register_user(request):
         return HttpResponseRedirect(reverse('library:loginpage'))
     else:
         return HttpResponse('Error in registration')
+
+def auth(request):
+    username = request.POST['username']
+    password = request.POST['password']
+
+    l = Student.objects.filter(username=username, password=password)
+    if len(l):
+        return HttpResponseRedirect(reverse('library:homepage'))
+    else:
+        return HttpResponseRedirect(reverse('library:loginpage'))
+
+def show_home(request):
+    blist = Book.objects.all()
+    context = {
+        'booklist': blist
+    }
+    return render(request, 'library/private/home.html', context)
+
+def show_book(request, book_id):
+    book = Book.objects.get(pk=book_id)
+    context = {
+        'book': book
+    }
+
+    return render(request, 'library/private/book.html', context)
 
 # ORM
 # OOP -> RDBMS
