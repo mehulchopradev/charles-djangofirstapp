@@ -15,6 +15,7 @@ class Book(models.Model):
     publication = models.ForeignKey(Publication, on_delete=models.CASCADE, default=None)
     count = models.IntegerField(null=False, default=0)
     # review_set
+    # student_set
 
     def __str__(self):
         return self.title

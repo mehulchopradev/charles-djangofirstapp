@@ -1,0 +1,24 @@
+{% extends 'library/master_public.html' %}
+
+{% block header %}
+  Welcome {{ username }} <br>
+{% endblock %}
+
+{% block content %}
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Country</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for friend in friends %}
+        <tr>
+          <td>{{ friend.username }}</td>
+          <td>{{ friend.country }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

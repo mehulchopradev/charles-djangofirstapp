@@ -1,16 +1,21 @@
 {% extends 'library/master_public.html' %}
 
 {% block header %}
-  Welcome
+  Welcome {{ username }}
+  <a href="{% url 'library:logout' %}">Logout</a>
 {% endblock %}
 
 {% block content %}
+  <div class="menu">
+    <a href="{% url 'library:getfriends' %}">Friends</a>
+  </div>
   <table border="1">
     <thead>
       <tr>
         <th>Title</th>
         <th>Price</th>
         <th>Pages</th>
+        <th></th>
         <th></th>
       </tr>
     </thead>
@@ -21,6 +26,15 @@
           <td>{{book.price}}</td>
           <td>{{book.pages}}</td>
           <td><a href="{% url 'library:bookdetails' book.id %}">Details</a></td>
+          <td>
+            {% if book.alreadyissued %}
+              <a href="{% url 'library:returnbook' book.id %}">Return Book</a>
+            {% elif book.canbeissued %}
+              <a href="{% url 'library:issuebook' book.id %}">Issue Book</a>
+            {% else %}
+              <label style="color: red">Cannot Issue</label>
+            {% endif %}
+          </td>
         </tr>
       {% endfor %}
     </tbody>
