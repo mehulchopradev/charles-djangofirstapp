@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 class Publication(models.Model):
     name = models.CharField(max_length=50, null=False)
@@ -14,6 +15,7 @@ class Book(models.Model):
     pages = models.IntegerField(null=True)
     publication = models.ForeignKey(Publication, on_delete=models.CASCADE, default=None)
     count = models.IntegerField(null=False, default=0)
+    published_date = models.DateField(null=False, default=date.today())
     # review_set
     # student_set
 

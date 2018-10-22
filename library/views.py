@@ -2,11 +2,15 @@ from django.shortcuts import render, reverse
 from django.http import HttpResponseRedirect, HttpResponse
 
 from library.models import Student, Book
+from library.forms import LoginForm
 
 # Create your views here.
 
 def show_login(request):
-    return render(request, 'library/public/login.html')
+    loginform = LoginForm()
+    return render(request, 'library/public/login.html', {
+        'form': loginform
+    })
 
 def show_register(request):
     return render(request, 'library/public/register.html')
@@ -26,10 +30,16 @@ def register_user(request):
         return HttpResponse('Error in registration')
 
 def auth(request):
-    username = request.POST['username']
-    password = request.POST['password']
+    form = LoginForm(request.POST)
+    if form.is_valid():
+        d = form.cleaned_data
+        print(d)
+    else:
+        print('Some field missing')
+    # username = request.POST['username']
+    # password = request.POST['password']
 
-    l = Student.objects.filter(username=username, password=password)
+    '''l = Student.objects.filter(username=username, password=password)
     if len(l):
         # remember the username data
         request.session['username'] = username
@@ -37,7 +47,7 @@ def auth(request):
         # request.session['student'] = l[0]
         return HttpResponseRedirect(reverse('library:homepage'))
     else:
-        return HttpResponseRedirect(reverse('library:loginpage'))
+        return HttpResponseRedirect(reverse('library:loginpage'))'''
 
 def show_home(request):
     if 'username' not in request.session:

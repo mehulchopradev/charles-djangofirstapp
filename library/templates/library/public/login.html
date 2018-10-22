@@ -7,8 +7,7 @@
 {% block content %}
   <form method="post" action="{% url 'library:authenticate' %}">
     {% csrf_token %}
-    <p><input placeholder="Enter Username" name="username"></p>
-    <p><input type="password" name="password" placeholder="Enter Password"></p>
+    {{ form }}
     <p>
       <input type="submit" value="Login">&nbsp;
       <a href="{% url 'library:registerpage' %}">Register</a>
